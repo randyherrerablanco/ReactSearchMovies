@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+import './App.css'
+import 'bulma/css/bulma.css'
+
+import { Detail } from './pages/Detail';
+import { Home } from './pages/Home'
 
 function App() {
+  const url = new URL(document.location)
+  const Page = url.searchParams.has('id')
+    ? <Detail id={url.searchParams.get('id')}></Detail>
+    : <Home></Home>
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {Page}
     </div>
   );
 }
